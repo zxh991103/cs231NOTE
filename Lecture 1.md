@@ -2,9 +2,12 @@
 
 ## computer vision
 
-Crouse for using dl to deal with cv
+Crouse for using dl to deal with cv.
 
 * Recognization via Matching
 * Face Detection
+
 ## DL
+
+
 
