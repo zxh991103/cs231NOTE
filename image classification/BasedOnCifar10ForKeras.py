@@ -1,10 +1,10 @@
-# from keras.datasets import cifar10
+from keras.datasets import cifar10
 
-# (x_train, y_train), (x_validation, y_validation) = cifar10.load_data()
+(x_train, y_train), (x_validation, y_validation) = cifar10.load_data()
 
-# print(x_train.shape)
+print(x_train.shape)
 
-# print(y_train.shape)
+print(y_train.shape)
 
 
 from keras.datasets import cifar10
