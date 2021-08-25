@@ -1,5 +1,6 @@
 # introduction
 
+**xiaohui zhao**
 ## computer vision
 
 Crouse for using dl to deal with cv.
@@ -9,5 +10,9 @@ Crouse for using dl to deal with cv.
 
 ## DL
 
+* perceptron 感知器
+* Neocognitron
+* backpropagation 反向传播算法
+* Convolutional network
 
 
