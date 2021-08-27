@@ -38,3 +38,6 @@ Cross-validation
 
 ## Image-LinearClassification
 
+Image->$$f(x,W)$$->10 numbers classes score
+
+
