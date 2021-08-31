@@ -77,8 +77,14 @@ class KNearestNeighbor(object):
                 #####################################################################
                 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-                pass
-
+                t1 = X[i]
+                t2 = self.X_train[j]
+                t = t1 - t2
+                t = t*t
+                t = t.sum()
+                t = t**0.5
+                dists[i][j] = t
+#                 dists[i,j] = np.sum((X[i,:]-self.X_train[j,:])**2)
                 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -101,7 +107,8 @@ class KNearestNeighbor(object):
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            pass
+#             pass
+            dists[i,:] = np.sum((X[i,:]-self.X_train)**2,axis = 1)
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -131,7 +138,21 @@ class KNearestNeighbor(object):
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+#         T = np.sum(X**2,axis = 1)
+#         F = np.sum(self.X_train**2,axis = 1).T
+#         F = np.tile(F,(500,5000))
+#         FT = X.dot(self.X_train.T)
+# #         print(T.shape,F.shape,FT.shape,X.shape,self.X_train.shape)
+#         dists = T+F-2*FT
+        M = np.dot(X, self.X_train.T)
+        nrow=M.shape[0]
+        ncol=M.shape[1]
+        te = np.diag(np.dot(X,X.T))
+        tr = np.diag(np.dot(self.X_train,self.X_train.T))
+        te= np.reshape(np.repeat(te,ncol),M.shape)
+        tr = np.reshape(np.repeat(tr, nrow), M.T.shape)
+        sq=-2 * M +te+tr.T
+        dists = np.sqrt(sq)
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -151,6 +172,7 @@ class KNearestNeighbor(object):
         """
         num_test = dists.shape[0]
         y_pred = np.zeros(num_test)
+        labelnum = len(np.unique(self.y_train))
         for i in range(num_test):
             # A list of length k storing the labels of the k nearest neighbors to
             # the ith test point.
@@ -163,8 +185,10 @@ class KNearestNeighbor(object):
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-            pass
+            closest_y = np.argsort(dists[i,:])[:k]
+            
+            
+            
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
             #########################################################################
@@ -175,9 +199,15 @@ class KNearestNeighbor(object):
             # label.                                                                #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
-            pass
+            t = np.zeros(labelnum,dtype=int)
+            
+            for j in closest_y:
+                t[self.y_train[j]]+=1
+#             print(t)
+            y_pred[i] = t.argmax()
+            
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return y_pred
+
