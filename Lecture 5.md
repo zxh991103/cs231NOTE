@@ -45,7 +45,11 @@ downsample
 
 ### maxpooling
 
-typical : not have overlap
+
+
+typical : not have overlap like 2\*2 filter with stride 2 
+
+
 
 1 1 2 4
 
@@ -60,3 +64,7 @@ typical : not have overlap
 6 8
 
 3 4
+
+
+
+FClayer for the last
