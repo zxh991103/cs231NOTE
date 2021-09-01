@@ -92,7 +92,36 @@ For conv: dim_in is $fliter\_size^2 \times input\_chanels$
 W = np.random.randn(dim_in,dim_out)*np.sqrt(2/dim_in)
 ```
 ## batch Normalization
+we have the input  x like N×D 
+$$
+\widehat{x}^{(k)}=\frac{x^{(k)}-\mathrm{E}\left[x^{(k)}\right]}{\sqrt{\operatorname{Var}\left[x^{(k)}\right]}}
+$$
 
-## 
+so that we have:
+$$
+\mu_{j}=\frac{1}{N} \sum_{i=1}^{N} x_{i, j}
+$$
+$$
+\sigma_{j}^{2}=\frac{1}{N} \sum_{i=1}^{N}\left(x_{i, j}-\mu_{j}\right)^{2}
+$$
+$$
+\hat{x}_{i, j}=\frac{x_{i, j}-\mu_{j}}{\sqrt{\sigma_{j}^{2}+\varepsilon}}
+$$
+
+
+the net is supposed to learn $\gamma \in R^D$  and  $\beta\in R^D$ 
+$$
+y_{i, j}=\gamma_{j} \hat{x}_{i, j}+\beta_{j}
+$$
+
+usually after FC or conv layer
+N batch
+**for conv**:
+* batch norm , for every batch we have a mean of (1× 1 × C)
+* layer norm , for all batch we have a mean pic of (H × W× C)
+* instance norm ,for all batch we have a mean single channel pic of (H × W ×1)
+* group norm , like layer norm , we compress the mean pic into only some channels like (H × W × channelNumber)
+
+## Choose Hyperparameters
 random search
 grid search
