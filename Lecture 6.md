@@ -22,10 +22,12 @@ $$max(0,x)$$
 
 LeakyRelu
 $$max(0.1x,x)$$
+
 Maxout
 $$
 \max \left(w_{1}^{T} x+b_{1}, w_{2}^{T} x+b_{2}\right)
 $$
+
 Elu
 $$
 \begin{cases}
@@ -49,6 +51,14 @@ $$
 **Leaky Relu will not dead**
 
 
+
+## Data process
+```PYTHON
+# ZERO-CENTER
+X -= np.mean(X,axis = 0)
+# normalize
+X /= np.std(X,axis = 0)
+```
 
 ## 
 
