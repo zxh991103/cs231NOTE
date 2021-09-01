@@ -71,7 +71,8 @@ First Idea: small random numbers.
 **deeper net will trouble itself.**
 * gradient will be very close to zero, which means no learning.**:)**
 
-**Xavier** 
+
+### Xavier
 ```python
 W = np.random.randn(dim_in,dim_out)/np.sqrt(dim_in)
 ```
@@ -85,7 +86,13 @@ $$
 and obviously initially w_i ~ N(0,1) , we make $\frac{w_i}{\sqrt{Din}}$ to achieve the var is $\frac{1}{Din}$
 
 For conv: dim_in is $fliter\_size^2 \times input\_chanels$
+
+### Kaiming/MSRA init
+```python
+W = np.random.randn(dim_in,dim_out)*np.sqrt(2/dim_in)
+```
+## batch Normalization
+
 ## 
 random search
-
 grid search
