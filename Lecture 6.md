@@ -59,9 +59,24 @@ X -= np.mean(X,axis = 0)
 # normalize
 X /= np.std(X,axis = 0)
 ```
+**easier to optimize**
+PCA
 
+whitening
+
+## weight initialization
+
+First Idea: small random numbers.
+
+**deeper net will trouble itself.**
+* gradient will be very close to zero, which means no learning.**:)**
+
+**Xavier** 
+```python
+W = np.random.randn(dim_in,dim_out)/np.sqrt(dim_in)
+```
+For conv: dim_in is $fliter\_size^2 \times input\_chanels$
 ## 
-
 random search
 
 grid search
