@@ -123,5 +123,7 @@ N batch
 * group norm , like layer norm , we compress the mean pic into only some channels like (H × W × channelNumber)
 
 ## Choose Hyperparameters
-random search
-grid search
+
+
+* random search ,sometimes can reach the best point
+* grid search , can jump the best point
