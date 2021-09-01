@@ -75,6 +75,15 @@ First Idea: small random numbers.
 ```python
 W = np.random.randn(dim_in,dim_out)/np.sqrt(dim_in)
 ```
+*Reason:*
+we want Var(y) = Var($x_i$) , and we have 
+$$y = \sum_{i=1}^{Din} x_i w_i$$
+and we assume that  every x has same var. so we have 
+$$
+var(y) = Din \times var(x) \times var(w_i)
+$$
+and obviously initially w_i ~ N(0,1) , we make $\frac{w_i}{\sqrt{Din}}$ to achieve the var is $\frac{1}{Din}$
+
 For conv: dim_in is $fliter\_size^2 \times input\_chanels$
 ## 
 random search
